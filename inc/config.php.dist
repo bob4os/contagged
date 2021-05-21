@@ -3,12 +3,6 @@
   // LDAP URL; if set, takes precedence over ldapserver and ldapport
   #$conf['ldapurl']     = 'ldaps://ldap.example.com/';
 
-  // Which LDAP Server to use?
-  $conf['ldapserver']  = 'ldap';
-
-  // Which LDAP Port Server to use? (389 is standard, 636 for ssl)
-  $conf['ldapport']    = 389;
-
   // Use LDAP protocol version 3? (0|1)
   $conf['ldapv3'] = 1;
 
