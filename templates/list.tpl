@@ -15,6 +15,11 @@
         </td>
       </tr>
     {else}
+      <thead>
+        <tr>
+          <th></th><th>{$lang.name}</th><th>{$lang.organization}</th><th>{$lang.phone}</th><th>{$lang.mobile}</th><th>{$lang.mail}</th>
+        </tr>
+      </thead>
       {* $list is a concatenation of multiple list_entry.tpl *}
       {$list}
     {/if}
