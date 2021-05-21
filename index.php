@@ -126,7 +126,7 @@
       // add wildcards between digits to compensate for any formatting
       $length = strlen($number);
       for($i=0; $i <$length; $i++){
-        $filter .= '*'.$number{$i};
+        $filter .= '*'.$number[$i];
       }
       $filter .= '*';
       $ldapfilter = '(&'.
