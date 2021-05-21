@@ -50,7 +50,7 @@ function tpl_entry($in){
     if(empty($in[$key])) continue;
 
     // keep arrays for multi fields
-    if($name{0} == '_'){
+    if($name[0] == '_'){
         $name  = substr($name,1);
         if(is_array($in[$key])){
             $out[$name] = $in[$key];
