@@ -54,8 +54,6 @@ function do_ldap_bind($user,$pass,$dn=""){
   if(!$LDAP_CON){
     if (!empty($conf['ldapurl'])){
       $LDAP_CON = ldap_connect($conf['ldapurl']);
-    }else{
-      $LDAP_CON = ldap_connect($conf['ldapserver'],$conf['ldapport']);
     }
     if(!$LDAP_CON){
       die("couldn't connect to LDAP server");
