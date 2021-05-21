@@ -14,6 +14,9 @@
         <a href="callto://{$entry.phone|escape:phone}">{$entry.phone|h}</a>&nbsp;
     </td>
     <td>
+        <a href="callto://{$entry.mobile|escape:mobile}">{$entry.mobile|h}</a>&nbsp;
+    </td>
+    <td>
         <a href="mailto:{$entry.mail[0]|h}">{$entry.mail[0]|h}</a>&nbsp;
     </td>
     <td width="16">
