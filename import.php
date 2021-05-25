@@ -3,22 +3,24 @@ require_once('inc/init.php');
 require_once('inc/Contact_Vcard_Parse.php');
 ldap_login();
 
-if($conf['userlogreq'] && empty($_SESSION['ldapab']['username'])){
+if ($conf['userlogreq'] && empty($_SESSION['ldapab']['username'])){
   header("Location: login.php");
   exit;
 }
 
 $error = '';
-if(isset($_FILES['userfile'])){
-  if (is_uploaded_file($_FILES['userfile']['tmp_name'])){
-    if(preg_match('/\.vcf$/i', $_FILES['userfile']['name'])){
+$vcards = array();
+
+if (isset($_FILES['userfile'])){
+  if (is_uploaded_file($_FILES['userfile']['tmp_name'])) {
+    if (preg_match('/\.vcf$/i', $_FILES['userfile']['name'])) {
       //parse VCF
       $vcfparser = new Contact_Vcard_Parse();
       $vcards    = $vcfparser->fromFile($_FILES['userfile']['tmp_name']);
-    }else{
-        $error = "Only *.vcf accepted";
+    } else {
+      $error = "Only *.vcf accepted";
     }
-  }else{
+  } else {
     switch($_FILES['userfile']['error']){
      case 0: //no error; possible file attack!
        $error = "There was a problem with your upload.";
@@ -44,8 +46,8 @@ if(isset($_FILES['userfile'])){
 
 //prepare templates for all found entries
 $list = '';
-if(count($vcards)){
-  foreach ($vcards as $vcard){
+if (count($vcards)) {
+  foreach ($vcards as $vcard) {
     $entry = vcard_entry($vcard);
     $smarty->clear_all_assign();
     tpl_std();
