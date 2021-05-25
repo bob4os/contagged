@@ -387,24 +387,28 @@ function ldap_queryabooks($filter,$types){
   $result3 = array();
 
   // public addressbook
-  $sr      = @ldap_search($LDAP_CON,$conf['publicbook'],
-                        $filter,$types);
+  $sr = @ldap_search($LDAP_CON, $conf['publicbook'],
+                        $filter, $types);
   tpl_ldaperror();
   $result1 = ldap_get_binentries($LDAP_CON, $sr);
   ldap_free_result($sr);
 
   // private addressbook
-  if(!empty($_SESSION['ldapab']['binddn']) && $conf['privatebook']){
-    $sr      = @ldap_list($LDAP_CON,$conf['privatebook'].
-                          ','.$_SESSION['ldapab']['binddn'],
-                          $filter,$types);
-    if(ldap_errno($LDAP_CON) != 32) tpl_ldaperror(); // ignore missing address book
-    $result2 = ldap_get_binentries($LDAP_CON, $sr);
+  if (!empty($_SESSION['ldapab']['binddn']) && $conf['privatebook']) {
+    $sr = @ldap_list($LDAP_CON, $conf['privatebook'].
+                          ',' . $_SESSION['ldapab']['binddn'],
+                          $filter, $types);
+    if (ldap_errno($LDAP_CON) != 32) {
+      tpl_ldaperror(); // ignore missing address book
+    }
+    elseif ($sr !== false) {
+      $result2 = ldap_get_binentries($LDAP_CON, $sr);
+    }
   }
 
   // user account entries
   if ($conf['displayusertree']) {
-    $sr      = @ldap_list($LDAP_CON,$conf['usertree'],
+    $sr = @ldap_list($LDAP_CON,$conf['usertree'],
                         $filter,$types);
     tpl_ldaperror();
     $result3 = ldap_get_binentries($LDAP_CON, $sr);
