@@ -82,11 +82,38 @@
   function _namesort($a,$b){
     global $result;
     global $FIELDS;
-    if (empty($result[$a][$FIELDS['givenname']])) { $result[$a][$FIELDS['givenname']]=''; }
-    if (empty($result[$b][$FIELDS['givenname']])) { $result[$b][$FIELDS['givenname']]=''; }
-    $x = $result[$a][$FIELDS['name']][0].$result[$a][$FIELDS['givenname']][0];
-    $y = $result[$b][$FIELDS['name']][0].$result[$b][$FIELDS['givenname']][0];
-    return(strcasecmp($x,$y));
+
+    $x = $y = '';
+
+    if (empty($result[$a][$FIELDS['name']])) {
+      $result[$a][$FIELDS['name']] = '';
+    }
+    else {
+      $x .= $result[$a][$FIELDS['name']][0];
+    }
+
+    if (empty($result[$a][$FIELDS['givenname']])) {
+      $result[$a][$FIELDS['givenname']] = '';
+    }
+    else {
+      $x .= $result[$a][$FIELDS['givenname']][0];
+    }
+
+    if (empty($result[$b][$FIELDS['name']])) {
+      $result[$b][$FIELDS['name']] = '';
+    }
+    else {
+      $y .= $result[$b][$FIELDS['name']][0];
+    }
+
+    if (empty($result[$b][$FIELDS['givenname']])) {
+      $result[$b][$FIELDS['givenname']] = '';
+    }
+    else {
+      $y .= $result[$b][$FIELDS['givenname']][0];
+    }
+
+    return(strcasecmp($x, $y));
   }
 
 
