@@ -217,7 +217,7 @@
           <td colspan="2"><h3>{$lang.communication}</h3></td>
         </tr>
 {if $fields._url}
-        {foreach from=$entry.url|smarty:nodefaults item=url}
+        {foreach from=$entry.url item=url}
         <tr>
           <th>{$lang.url} {counter}:</th>
           <td><input type="text" class="input" name="entry[url][]" value="{$url|h}" /></td>
@@ -230,10 +230,10 @@
 {/if}
 {if $fields._mail}
         <!--{counter start=0}-->
-        {foreach from=$entry.mail|smarty:nodefaults item=mail}
+        {foreach from=$entry.mail item=mail}
         <tr>
           <th>{$lang.mail} {counter}:</th>
-          <td><input type="text" class="input" name="entry[mail][]" value="{$mail}" /></td>
+          <td><input type="text" class="input" name="entry[mail][]" value="{$mail|h}" /></td>
         </tr>
         {/foreach}
         <tr>
