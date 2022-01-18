@@ -306,7 +306,7 @@ function get_users(){
   $sr = ldap_list($LDAP_CON,$conf['usertree'],"ObjectClass=inetOrgPerson");
   $result = ldap_get_binentries($LDAP_CON, $sr);
   $users = array();
-  if(count($result)){
+  if($result !== null && count($result)){
     foreach ($result as $entry){
       if(!empty($entry['sn'][0])){
         $users[$entry['dn']] = $entry['givenName'][0]." ".$entry['sn'][0];
@@ -529,4 +529,3 @@ function get_fields_from_template($tpl){
     }
     return $return;
 }
-
