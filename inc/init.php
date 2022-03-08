@@ -28,6 +28,6 @@
   $smarty->force_compile = $conf['smartycompile'];
 
   // select the correct google api key
-  $conf['gmapkey'] = $conf['gmaps'][$_SERVER['HTTP_HOST']];
+  $conf['gmapkey'] = isset($conf['gmaps'][$_SERVER['HTTP_HOST']]) ? $conf['gmaps'][$_SERVER['HTTP_HOST']] : '';
 
 ?>
