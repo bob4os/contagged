@@ -147,7 +147,7 @@
         $ldapfilter .= '('.$FIELDS['_marker'].'='.$m.')';
       }
       $ldapfilter .= ')';
-    }elseif($number){
+    }elseif(!empty($number)){
       // Search by telephone number
       $filter = '';
       // add wildcards between digits to compensate for any formatting
